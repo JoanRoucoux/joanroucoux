@@ -2,7 +2,7 @@
 
 <h3 align="left">About me</h3>
 <p align="left">
-    Scrum certified full stack developer, I mainly work on React and Java, but I also like to get my hands dirty on new technologies by building small applications.
+    Scrum certified full stack developer, I mainly work on React and Java, but I also love to get my hands dirty on new technologies by building cool applications.
 </p>
 <ul align="left">
   <li>🌍 I'm based in Paris</li>
