@@ -11,6 +11,7 @@ Full Stack Developer working with React and Java, I love learning new things and
 ## My latest articles 📝
 
 <!-- ARTICLES:START -->
+- [Update README with Latest Articles Using GitHub Actions](https://dev.to/joanroucoux/update-readme-with-latest-articles-using-github-actions-41m3)
 - [Building a Marvel Search Application with Qwik](https://dev.to/joanroucoux/building-a-marvel-search-application-with-qwik-ll7)
 <!-- ARTICLES:END -->
 
