@@ -2,6 +2,9 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { Article, ArticlePreview } from './types.ts';
 
+const DEV_TO_API_BASE_URL = 'https://dev.to/api';
+const USERNAME = 'joanroucoux';
+
 const main = async (): Promise<void> => {
   // Read the original file content
   const filePath = '../README.md';
@@ -10,7 +13,7 @@ const main = async (): Promise<void> => {
   // Proceed only if the file was read successfully
   if (markdown) {
     // Fetch latest articles
-    const articles = await fetchArticles();
+    const articles = await fetchArticles(USERNAME);
 
     // Generate new content
     const newContent = generateArticlesContent(articles);
@@ -31,9 +34,13 @@ const main = async (): Promise<void> => {
 };
 
 // Fetch latest articles
-const fetchArticles = async (): Promise<ArticlePreview[]> => {
+const fetchArticles = async (
+  username: string,
+  page: number = 1,
+  perPage: number = 5
+): Promise<ArticlePreview[]> => {
   const response = await fetch(
-    'https://dev.to/api/articles?username=joanroucoux&page=1&per_page=5'
+    `${DEV_TO_API_BASE_URL}/articles?username=${username}&page=${page}&per_page=${perPage}`
   );
   const data: Article[] = await response.json();
   return data?.map((article: Article) => ({
