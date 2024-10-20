@@ -1,10 +1,8 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import * as fs from 'node:fs/promises';
+import path from 'node:path';
+import { Article, ArticlePreview } from './types.ts';
 
-// Get __dirname equivalent in ES modules
-const __dirname = import.meta.dirname;
-
-const main = async () => {
+const main = async (): Promise<void> => {
   // Read the original file content
   const filePath = '../README.md';
   const markdown = await readFile(filePath);
@@ -33,19 +31,19 @@ const main = async () => {
 };
 
 // Fetch latest articles
-const fetchArticles = async () => {
+const fetchArticles = async (): Promise<ArticlePreview[]> => {
   const response = await fetch(
     'https://dev.to/api/articles?username=joanroucoux&page=1&per_page=5'
   );
-  const data = await response.json();
-  return data?.map((article) => ({
+  const data: Article[] = await response.json();
+  return data?.map((article: Article) => ({
     title: article.title,
     url: article.url,
   }));
 };
 
 // Generate markdown from articles
-const generateArticlesContent = (articles) => {
+const generateArticlesContent = (articles: ArticlePreview[]): string => {
   let markdown = '';
 
   articles?.forEach((article) => {
@@ -56,12 +54,11 @@ const generateArticlesContent = (articles) => {
 };
 
 // Read file
-const readFile = async (filePath) => {
+const readFile = async (filePath: string): Promise<string | null> => {
   try {
-    const absolutePath = path.resolve(__dirname, filePath);
+    const absolutePath = path.resolve(import.meta.dirname, filePath);
     console.log('Reading file from:', absolutePath);
-    const data = await fs.readFile(absolutePath, 'utf8');
-    return data;
+    return await fs.readFile(absolutePath, 'utf8');
   } catch (err) {
     console.error('Error reading file:', err);
     return null;
@@ -70,20 +67,19 @@ const readFile = async (filePath) => {
 
 // Generate updated markdown
 const replaceContentBetweenMarkers = (
-  markdown,
-  startMarker,
-  endMarker,
-  newContent
-) => {
+  markdown: string,
+  startMarker: string,
+  endMarker: string,
+  newContent: string
+): string => {
   const regex = new RegExp(`(${startMarker})([\\s\\S]*?)(${endMarker})`, 'g');
-  const updatedMarkdown = markdown.replace(regex, `$1\n${newContent}$3`);
-  return updatedMarkdown;
+  return markdown.replace(regex, `$1\n${newContent}$3`);
 };
 
 // Save file
-const saveFile = async (filePath, content) => {
+const saveFile = async (filePath: string, content: string): Promise<void> => {
   try {
-    const absolutePath = path.resolve(__dirname, filePath);
+    const absolutePath = path.resolve(import.meta.dirname, filePath);
     await fs.writeFile(absolutePath, content, 'utf8');
     console.log('File has been saved successfully!');
   } catch (err) {
