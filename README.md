@@ -11,6 +11,7 @@ Full Stack Developer working with React and Java, I love learning new things and
 ## My latest articles 📝
 
 <!-- ARTICLES:START -->
+- [Easily Sync Your Subtitles with React, RHF and shadcn/ui](https://dev.to/joanroucoux/easily-sync-your-subtitles-with-react-rhf-and-shadcnui-3gfe)
 - [Building a Scalable URL Shortener with Node.js (Part 2/2)](https://dev.to/joanroucoux/building-a-scalable-url-shortener-with-nodejs-part-22-77k)
 - [Building a Scalable URL Shortener with Node.js (Part 1/2)](https://dev.to/joanroucoux/building-a-scalable-url-shortener-with-nodejs-part-12-232i)
 - [Update README with Latest Articles Using GitHub Actions and Deno 2](https://dev.to/joanroucoux/update-readme-with-latest-articles-using-github-actions-41m3)
